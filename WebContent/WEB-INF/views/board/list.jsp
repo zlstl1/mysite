@@ -37,7 +37,14 @@
 							<td>${vo.name}</td>
 							<td>${vo.hit}</td>
 							<td>${vo.date}</td>
-							<td><a href="/mysite/board?a=delete&no=${vo.no}&name=${vo.name}" class="del">삭제</a></td>
+							<c:choose>
+								<c:when test="${sessionScope.authUser.no eq vo.user_no}">
+									<td><a href="/mysite/board?a=delete&no=${vo.no}&name=${vo.name}" class="del">삭제</a></td>
+								</c:when>
+								<c:otherwise>
+									<td></td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</table>
